@@ -1,7 +1,8 @@
-import { stringify } from "postcss";
 
 const generateReadMe = async ({
-  code
+  student,
+  projectName,
+  notes
 }) => {
   try {
     const response = await fetch(
@@ -13,9 +14,10 @@ const generateReadMe = async ({
           Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
         },
         body: JSON.stringify({
-          prompt: `${code}. Read the code and generate a README.md for it in markdown format. 
-          If possible include code usage examples. 
-          Make sure all sentences are complete.`,
+          prompt: `Use the Following notes about a student and their project to return me a well formatted and descriptive summary of the lesson: 
+          student Name: ${student},
+          Student Project: ${projectName},
+          Notes about project: ${notes}`,
           max_tokens: 300,
           temperature: 0.7,
         }),
@@ -24,12 +26,12 @@ const generateReadMe = async ({
     const data = await response.json();
     console.log('AI Response: ', data);
 
-    if(!data?.error){
+    if (!data?.error) {
       return data?.choices[0]?.text;
     } else {
       return data.error.message;
     }
-   
+
 
   } catch (err) {
     console.error(err);
@@ -38,10 +40,17 @@ const generateReadMe = async ({
 };
 
 export default async function handler(req, res) {
-  const { code } = req.body;
-  console.log('Code for readme: ', code)
+  const {
+    student,
+    projectName,
+    notes
+  } = req.body;
+
+  console.log('Notes for student: ', notes)
   const answer = await generateReadMe({
-    code
+    student,
+    projectName,
+    notes
   });
 
   res.status(200).json({

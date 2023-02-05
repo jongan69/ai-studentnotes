@@ -1,4 +1,4 @@
-# AI Readme
+# AI Student Notes
 
 <img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="GitHub license">
 <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" alt="PRs Welcome">

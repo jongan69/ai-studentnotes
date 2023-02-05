@@ -112,7 +112,7 @@ export default function Dashboard() {
               type="submit"
               disabled={isGenerating}
             >
-              {isGenerating ? "Generating..." : "Generate Readme"}
+              {isGenerating ? "Generating..." : "Generate Notes"}
             </button>
 
           </form>

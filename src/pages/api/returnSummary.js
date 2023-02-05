@@ -14,7 +14,9 @@ const generateReadMe = async ({
           Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
         },
         body: JSON.stringify({
-          prompt: `Use the Following notes about a student and their project to return me a well formatted and descriptive summary of the lesson: 
+          prompt: `Use the Following notes about a student and their project.
+          Return me a well formatted and descriptive summary of the lesson,
+          provide details on about technologies or tools mentioned in the notes: 
           student Name: ${student},
           Student Project: ${projectName},
           Notes about project: ${notes}`,
